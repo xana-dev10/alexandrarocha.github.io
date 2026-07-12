@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alexandra Rocha - CV</title>
-    <!-- Importação de fonte moderna (Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Variáveis de Cores para fácil alteração */
         :root {
-            --primary-color: #2c3e50; /* Azul escuro tech */
-            --accent-color: #3498db; /* Azul vibrante para detalhes */
+            --primary-color: #2c3e50; 
+            --accent-color: #3498db; 
             --text-dark: #1a1a1a;
             --text-main: #333333;
             --text-light: #666666;
@@ -19,7 +17,6 @@
             --bg-cv: #ffffff;
         }
 
-        /* Reset e Base */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: 'Inter', sans-serif; 
@@ -29,7 +26,6 @@
             padding: 25px 20px;
         }
 
-        /* Contentor Principal (Efeito Folha A4) */
         .cv-container {
             max-width: 850px;
             margin: 0 auto;
@@ -37,18 +33,16 @@
             padding: 35px 45px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            opacity: 0; /* Para a animação JS */
-            transform: translateY(20px); /* Para a animação JS */
+            opacity: 0;
+            transform: translateY(20px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        /* Animação de Entrada */
         .cv-container.loaded {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Cabeçalho */
         h1 { 
             font-size: 30px; 
             text-transform: uppercase; 
@@ -67,7 +61,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Contactos */
         .contact-info { 
             font-size: 13px; 
             color: var(--text-light);
@@ -90,18 +83,16 @@
             color: var(--accent-color);
         }
 
-        /* Títulos de Secção */
         h2 { 
-            font-size: 16px; 
+            font-size: 15px; 
             text-transform: uppercase; 
-            margin-top: 20px; 
+            margin-top: 22px; 
             margin-bottom: 10px;
             color: var(--text-dark); 
             position: relative;
             padding-bottom: 6px;
         }
         
-        /* Linha decorativa debaixo dos títulos */
         h2::after {
             content: '';
             position: absolute;
@@ -114,12 +105,11 @@
         }
         
         .cv-container:hover h2::after {
-            width: 60px; /* Aumenta a linha ao passar o rato no CV */
+            width: 60px; 
         }
 
         p { font-size: 13.5px; text-align: justify; color: var(--text-light); }
 
-        /* Estilo dos Trabalhos/Projetos */
         .job-block {
             margin-bottom: 12px;
             padding: 6px 8px;
@@ -128,7 +118,7 @@
         }
 
         .job-block:hover {
-            background-color: #f8faff; /* Fundo muito suave ao passar o rato */
+            background-color: #f8faff; 
         }
 
         .job-header { 
@@ -154,10 +144,9 @@
             background: #f0f0f0;
             padding: 2px 8px;
             border-radius: 12px;
-            white-space: nowrap; /* Garante que a data fica sempre numa só linha */
+            white-space: nowrap;
         }
         
-        /* Listas */
         ul { 
             margin: 4px 0 0 0; 
             padding-left: 20px; 
@@ -165,9 +154,8 @@
             color: var(--text-light);
         }
         
-        li { margin-bottom: 4px; }
+        li { margin-bottom: 4px; text-align: justify; }
         
-        /* Efeito no Link da Publicação */
         li a {
             color: var(--primary-color);
             text-decoration: none;
@@ -180,39 +168,50 @@
             border-bottom: 1px solid var(--accent-color);
         }
         
-        /* Tags de Skills */
         .skills-container { 
             display: flex; 
             flex-wrap: wrap; 
-            gap: 8px; 
-            margin-top: 10px; 
-            margin-bottom: 15px; 
+            gap: 6px; 
+            margin-top: 8px; 
+            margin-bottom: 12px; 
         }
         
         .skill-tag { 
             background-color: var(--primary-color); 
             color: #fff; 
-            padding: 4px 12px; 
-            border-radius: 20px; /* Estilo 'Pill' moderno */
-            font-size: 11.5px; 
+            padding: 3px 10px; 
+            border-radius: 15px; 
+            font-size: 11px; 
             font-weight: 600; 
-            letter-spacing: 0.5px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
-            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            letter-spacing: 0.3px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, background-color 0.2s ease;
             cursor: default;
         }
         
         .skill-tag:hover {
-            transform: translateY(-2px);
+            transform: translateY(-1px);
             background-color: var(--accent-color);
-            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
         }
 
-        /* Responsividade para telemóveis */
+        .cert-item {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cert-title {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
         @media (max-width: 600px) {
             .cv-container { padding: 25px 20px; }
             .job-header { flex-direction: column; align-items: flex-start; gap: 5px; }
             .contact-info { flex-direction: column; gap: 5px; }
+            .cert-item { flex-direction: column; margin-bottom: 8px; }
         }
     </style>
 </head>
@@ -220,41 +219,38 @@
 
     <div class="cv-container" id="cv">
         <h1>Alexandra Rocha</h1>
-        <div class="subtitle">Software Engineer | Cloud & DevOps</div>
+        <div class="subtitle">Software Engineer (iOS) | Cloud & DevOps Enthusiast</div>
         
         <div class="contact-info">
-            <span>+351 93*******</span> | 
+            <span>+351 936811900</span> | 
             <a href="mailto:xanarocha1@gmail.com">xanarocha1@gmail.com</a> | 
             <span>Bragança, Portugal</span> | 
             <a href="https://linkedin.com/in/alexandra-rocha" target="_blank">linkedin.com/in/alexandra-rocha</a> | 
-            <a href="https://github.com/alexandrarocha" target="_blank">https://github.com/xana-dev10</a>
+            <a href="https://github.com/xana-dev10" target="_blank">github.com/xana-dev10</a>
         </div>
 
         <h2>Professional Summary</h2>
-        <p>Software Engineer transitioning into Cloud Infrastructure and Platform Engineering. Passionate about Infrastructure as Code (IaC), automation, and DevSecOps. Experienced in developing scalable applications and deploying robust, automated CI/CD pipelines to ensure system reliability and security.</p>
+        <p>Software Engineer with 3+ years of experience specializing in native mobile application engineering (Swift & Objective-C) for large-scale enterprise financial platforms. Combines strong client-side logic mastery with practical expertise in Cloud infrastructure, configuration automation, and DevSecOps frameworks derived from academic research and continuous technical certification.</p>
 
-        <h2>Core Skills</h2>
+        <h2>Core Technical Skills</h2>
         <div class="skills-container">
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">S3</span>
-            <span class="skill-tag">EC2</span>
+            <span class="skill-tag">Swift</span>
+            <span class="skill-tag">SwiftUI</span>
+            <span class="skill-tag">Objective-C</span>
+            <span class="skill-tag">UIKit</span>
+            <span class="skill-tag">Xcode</span>
+            <span class="skill-tag">Proxyman</span>
+            <span class="skill-tag">AWS (S3, EC2)</span>
             <span class="skill-tag">Terraform</span>
             <span class="skill-tag">Ansible</span>
             <span class="skill-tag">Packer</span>
-            <span class="skill-tag">CI/CD Pipelines</span>
+            <span class="skill-tag">Azure DevOps (CI/CD)</span>
             <span class="skill-tag">Linux Systems</span>
             <span class="skill-tag">Proxmox</span>
-            <span class="skill-tag">DevSecOps</span>
-            <span class="skill-tag">CIS Benchmarks</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">Swift</span>
-            <span class="skill-tag">Objective-C</span>
-            <span class="skill-tag">Umbraco</span>
-            <span class="skill-tag">SwiftUI</span>
-            <span class="skill-tag">Xcode</span>
-            <span class="skill-tag">Proxyman</span>
+            <span class="skill-tag">Cisco Networking</span>
+            <span class="skill-tag">Cybersecurity (CIS Benchmarks)</span>
             <span class="skill-tag">Git</span>
+            <span class="skill-tag">SQL</span>
         </div>
 
         <h2>Professional Experience</h2>
@@ -265,9 +261,10 @@
                 <span class="date">Mar 2023 – Present</span>
             </div>
             <ul>
-                <li>Software development, refactoring, and performance optimization for enterprise-level applications.</li>
-                <li>Implemented CI/CD integration practices to streamline software delivery and ensure production quality.</li>
-                <li>Collaborated within high-performance teams using Agile/Scrum methodologies.</li>
+                <li>Engineered, refactored, and optimized core modular features for high-traffic enterprise mobile banking applications (including <strong>Millennium BCP</strong> and <strong>Millennium BIM</strong>), ensuring robust client-side scaling for thousands of active daily users.</li>
+<li>Maintained daily ownership of version control, rigorous peer code reviews, and managed build deliveries leveraging automated <strong>Azure DevOps CI/CD pipelines</strong> to safeguard production quality.</li>
+<li>Systematically isolated and resolved complex native bugs and performance bottlenecks, drastically reducing application crash rates and improving production system stability.</li>
+<li>Collaborated closely within cross-functional agile engineering teams using structured Agile/Scrum sprint workflows.</li>
             </ul>
         </div>
 
@@ -277,8 +274,8 @@
                 <span class="date">Aug 2022</span>
             </div>
             <ul>
-                <li>Automated Golden Image generation by integrating <strong>HashiCorp Packer</strong> into CI/CD pipelines.</li>
-                <li>Applied <strong>CIS Benchmarks</strong> to proactively reduce infrastructure vulnerabilities prior to deployment.</li>
+                <li>Automated secure Golden Image generation configurations by successfully integrating <strong>HashiCorp Packer</strong> workflows into active development pipelines.</li>
+<li>Implemented standard <strong>CIS Benchmarks hardening policies</strong> across system images to proactively reduce infrastructure vulnerabilities prior to deployment.</li>
             </ul>
         </div>
 
@@ -288,11 +285,21 @@
                 <span class="date">Jul 2022</span>
             </div>
             <ul>
-                <li>Developed mobile application features using Swift and Objective-C in a Scrum-driven environment.</li>
+                <li>Developed and tested target mobile application features using Swift and Objective-C inside a structured, academy-driven Scrum team environment.</li>
             </ul>
         </div>
 
-        <h2>Notable Projects</h2>
+        <h2>Key Credentials & Certifications</h2>
+        <div style="padding: 6px 8px;">
+            <div class="cert-item"><span class="cert-title">AWS Cloud Quest: Generative AI Practitioner</span><span class="date">May 2026</span></div>
+            <div class="cert-item"><span class="cert-title">AWS Cloud Quest: Cloud Practitioner Badge</span><span class="date">May 2026</span></div>
+            <div class="cert-item"><span class="cert-title">HashiCorp Certified: Terraform Associate</span><span class="date">Jul 2025</span></div>
+            <div class="cert-item"><span class="cert-title">AWS Cloud Practitioner Essentials</span><span class="date">Sep 2025</span></div>
+            <div class="cert-item"><span class="cert-title">Linux Essentials & Cybersecurity Suite</span><span class="date">Cisco Academy</span></div>
+            <div class="cert-item"><span class="cert-title">CCNAv7: Enterprise Networking, Security, and Automation</span><span class="date">Cisco</span></div>
+        </div>
+
+        <h2>Notable Infrastructure Projects</h2>
 
         <div class="job-block">
             <div class="job-header">
@@ -300,9 +307,8 @@
                 <span class="date">2025 – Present</span>
             </div>
             <ul>
-                <li>Full-stack architecture and development of a custom e-commerce website for local handicrafts.</li>
-                <li>Infrastructure securely hosted on <strong>AWS</strong> to ensure high availability and scalability.</li>
-                <li>Designed a relational <strong>SQL</strong> database structure for efficient inventory and transaction management.</li>
+                <li>Architected and deployed a cloud-based e-commerce platform hosted on <strong>AWS</strong>, utilizing modern web deployment best practices.</li>
+<li>Configured scalable resource provisioning and managed relational <strong>SQL</strong> database schemas optimized for inventory management and user transactions.</li>
             </ul>
         </div>
 
@@ -314,8 +320,7 @@
                 <span class="date">2022 – 2025</span>
             </div>
             <ul>
-                <li><strong>Thesis / Practical Project:</strong> Cloud Infrastructure & IaC Automation. Designed and provisioned scalable infrastructure for cybersecurity training (CTFs/Labtainers) using a Proxmox virtual environment. Automated 100% of the deployment via <strong>Terraform</strong> and <strong>Ansible</strong>.</li>
-                <li>Key Areas: Software Architecture, Advanced Computing, Distributed Systems.</li>
+                <li><strong>Thesis Focus:</strong> Cloud Infrastructure & IaC Automation. Provisioned complex virtual training environments (CTFs) on a Proxmox cluster, achieving <strong>100% automation coverage</strong> via unified <strong>Terraform</strong> and <strong>Ansible</strong> playbooks to drop setup overhead down under 5 minutes.</li>
             </ul>
         </div>
 
@@ -325,23 +330,21 @@
                 <span class="date">2019 – 2022</span>
             </div>
             <ul>
-                <li><strong>Final Project:</strong> Development of an Intrusion Detection System (IDS) focused on the mitigation of SQL Injection attacks.</li>
-                <li><strong>Publication:</strong> Co-authored a scientific paper based on the final project. <em><a href="https://scitepress.org/PublicationsDetail.aspx?ID=5WRgX/VM5cU=" target="_blank">scitepress.org/PublicationsDetail</a></em></li>
+                <li><strong>Final Project:</strong> Designed a targeted Intrusion Detection System (IDS) layer focused on malicious SQL Injection mitigation.</li>
+                <li><strong>Publication:</strong> Co-authored a peer-reviewed scientific paper on security architecture insights published via <em><a href="https://scitepress.org/PublicationsDetail.aspx?ID=5WRgX/VM5cU=" target="_blank">SciTePress</a></em>.</li>
             </ul>
         </div>
 
-        <p style="margin-top: 15px;">Languages</h2>
-        <p style="margin-top: 6px;">
+        <h2>Languages</h2>
+        <p style="margin-top: 6px; padding: 0 8px;">
             <strong>Portuguese:</strong> Native &nbsp;|&nbsp; 
             <strong>English:</strong> B1 Intermediate &nbsp;|&nbsp; 
             <strong>French:</strong> Basic
         </p>
     </div>
 
-    <!-- Script para animação suave ao abrir o ficheiro -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Adiciona a classe que dispara a animação CSS de Fade In
             setTimeout(function() {
                 document.getElementById("cv").classList.add("loaded");
             }, 100);
