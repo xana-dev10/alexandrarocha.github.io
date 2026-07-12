@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexandra Rocha - CV</title>
+    <!-- Importação de fonte moderna (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variáveis de Cores para fácil alteração */
+        :root {
+            --primary-color: #2c3e50; /* Azul escuro tech */
+            --accent-color: #3498db; /* Azul vibrante para detalhes */
+            --text-dark: #1a1a1a;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-page: #f4f7f6;
+            --bg-cv: #ffffff;
+        }
+
+        /* Reset e Base */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-main); 
+            line-height: 1.45; 
+            background-color: var(--bg-page);
+            padding: 25px 20px;
+        }
+
+        /* Contentor Principal (Efeito Folha A4) */
+        .cv-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background-color: var(--bg-cv);
+            padding: 35px 45px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            opacity: 0; /* Para a animação JS */
+            transform: translateY(20px); /* Para a animação JS */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Animação de Entrada */
+        .cv-container.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cabeçalho */
+        h1 { 
+            font-size: 30px; 
+            text-transform: uppercase; 
+            color: var(--text-dark); 
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .subtitle { 
+            font-size: 14px; 
+            font-weight: 600; 
+            color: var(--accent-color); 
+            text-transform: uppercase; 
+            margin-top: 2px;
+            margin-bottom: 10px; 
+            letter-spacing: 0.5px;
+        }
+
+        /* Contactos */
+        .contact-info { 
+            font-size: 13px; 
+            color: var(--text-light);
+            margin-bottom: 20px; 
+            border-bottom: 2px solid #eaeaea; 
+            padding-bottom: 10px; 
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Títulos de Secção */
+        h2 { 
+            font-size: 16px; 
+            text-transform: uppercase; 
+            margin-top: 20px; 
+            margin-bottom: 10px;
+            color: var(--text-dark); 
+            position: relative;
+            padding-bottom: 6px;
+        }
+        
+        /* Linha decorativa debaixo dos títulos */
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .cv-container:hover h2::after {
+            width: 60px; /* Aumenta a linha ao passar o rato no CV */
+        }
+
+        p { font-size: 13.5px; text-align: justify; color: var(--text-light); }
+
+        /* Estilo dos Trabalhos/Projetos */
+        .job-block {
+            margin-bottom: 12px;
+            padding: 6px 8px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .job-block:hover {
+            background-color: #f8faff; /* Fundo muito suave ao passar o rato */
+        }
+
+        .job-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            font-weight: 700; 
+            font-size: 13.5px; 
+            color: var(--text-dark); 
+            gap: 15px;
+        }
+        
+        .company { 
+            font-weight: 400; 
+            font-style: italic; 
+            color: var(--accent-color); 
+        }
+        
+        .date { 
+            font-size: 11.5px; 
+            font-weight: 600; 
+            color: #777; 
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 12px;
+            white-space: nowrap; /* Garante que a data fica sempre numa só linha */
+        }
+        
+        /* Listas */
+        ul { 
+            margin: 4px 0 0 0; 
+            padding-left: 20px; 
+            font-size: 13px; 
+            color: var(--text-light);
+        }
+        
+        li { margin-bottom: 4px; }
+        
+        /* Efeito no Link da Publicação */
+        li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        li a:hover {
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Tags de Skills */
+        .skills-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 8px; 
+            margin-top: 10px; 
+            margin-bottom: 15px; 
+        }
+        
+        .skill-tag { 
+            background-color: var(--primary-color); 
+            color: #fff; 
+            padding: 4px 12px; 
+            border-radius: 20px; /* Estilo 'Pill' moderno */
+            font-size: 11.5px; 
+            font-weight: 600; 
+            letter-spacing: 0.5px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+        }
+        
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            background-color: var(--accent-color);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Responsividade para telemóveis */
+        @media (max-width: 600px) {
+            .cv-container { padding: 25px 20px; }
+            .job-header { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .contact-info { flex-direction: column; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cv-container" id="cv">
+        <h1>Alexandra Rocha</h1>
+        <div class="subtitle">Software Engineer | Cloud & DevOps</div>
+        
+        <div class="contact-info">
+            <span>+351 936811900</span> | 
+            <a href="mailto:xanarocha1@gmail.com">xanarocha1@gmail.com</a> | 
+            <span>Bragança, Portugal</span> | 
+            <a href="https://linkedin.com/in/alexandra-rocha" target="_blank">linkedin.com/in/alexandra-rocha</a> | 
+            <a href="https://github.com/alexandrarocha" target="_blank">https://github.com/xana-dev10</a>
+        </div>
+
+        <h2>Professional Summary</h2>
+        <p>Software Engineer transitioning into Cloud Infrastructure and Platform Engineering. Passionate about Infrastructure as Code (IaC), automation, and DevSecOps. Experienced in developing scalable applications and deploying robust, automated CI/CD pipelines to ensure system reliability and security.</p>
+
+        <h2>Core Skills</h2>
+        <div class="skills-container">
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">S3</span>
+            <span class="skill-tag">EC2</span>
+            <span class="skill-tag">Terraform</span>
+            <span class="skill-tag">Ansible</span>
+            <span class="skill-tag">Packer</span>
+            <span class="skill-tag">CI/CD Pipelines</span>
+            <span class="skill-tag">Linux Systems</span>
+            <span class="skill-tag">Proxmox</span>
+            <span class="skill-tag">DevSecOps</span>
+            <span class="skill-tag">CIS Benchmarks</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Swift</span>
+            <span class="skill-tag">Objective-C</span>
+            <span class="skill-tag">Umbraco</span>
+            <span class="skill-tag">SwiftUI</span>
+            <span class="skill-tag">Xcode</span>
+            <span class="skill-tag">Proxyman</span>
+            <span class="skill-tag">Git</span>
+        </div>
+
+        <h2>Professional Experience</h2>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span>Software Engineer <span class="company">| ITSector</span></span>
+                <span class="date">Mar 2023 – Present</span>
+            </div>
+            <ul>
+                <li>Software development, refactoring, and performance optimization for enterprise-level applications.</li>
+                <li>Implemented CI/CD integration practices to streamline software delivery and ensure production quality.</li>
+                <li>Collaborated within high-performance teams using Agile/Scrum methodologies.</li>
+            </ul>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span>DevOps & Security Intern <span class="company">| EuroTux</span></span>
+                <span class="date">Aug 2022</span>
+            </div>
+            <ul>
+                <li>Automated Golden Image generation by integrating <strong>HashiCorp Packer</strong> into CI/CD pipelines.</li>
+                <li>Applied <strong>CIS Benchmarks</strong> to proactively reduce infrastructure vulnerabilities prior to deployment.</li>
+            </ul>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span>Software Development Intern <span class="company">| ITSector</span></span>
+                <span class="date">Jul 2022</span>
+            </div>
+            <ul>
+                <li>Developed mobile application features using Swift and Objective-C in a Scrum-driven environment.</li>
+            </ul>
+        </div>
+
+        <h2>Notable Projects</h2>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span>Lojadatia (E-commerce Platform) <span class="company">| Personal Project</span></span>
+                <span class="date">2025 – Present</span>
+            </div>
+            <ul>
+                <li>Full-stack architecture and development of a custom e-commerce website for local handicrafts.</li>
+                <li>Infrastructure securely hosted on <strong>AWS</strong> to ensure high availability and scalability.</li>
+                <li>Designed a relational <strong>SQL</strong> database structure for efficient inventory and transaction management.</li>
+            </ul>
+        </div>
+
+        <h2>Education & Academic Research</h2>
+        
+        <div class="job-block">
+            <div class="job-header">
+                <span>MSc in Informatics <span class="company">| Polytechnic Institute of Bragança (IPB)</span></span>
+                <span class="date">2022 – 2025</span>
+            </div>
+            <ul>
+                <li><strong>Thesis / Practical Project:</strong> Cloud Infrastructure & IaC Automation. Designed and provisioned scalable infrastructure for cybersecurity training (CTFs/Labtainers) using a Proxmox virtual environment. Automated 100% of the deployment via <strong>Terraform</strong> and <strong>Ansible</strong>.</li>
+                <li>Key Areas: Software Architecture, Advanced Computing, Distributed Systems.</li>
+            </ul>
+        </div>
+
+        <div class="job-block">
+            <div class="job-header">
+                <span>BSc in Software Engineering <span class="company">| Polytechnic Institute of Bragança (IPB)</span></span>
+                <span class="date">2019 – 2022</span>
+            </div>
+            <ul>
+                <li><strong>Final Project:</strong> Development of an Intrusion Detection System (IDS) focused on the mitigation of SQL Injection attacks.</li>
+                <li><strong>Publication:</strong> Co-authored a scientific paper based on the final project. <em><a href="https://scitepress.org/PublicationsDetail.aspx?ID=5WRgX/VM5cU=" target="_blank">scitepress.org/PublicationsDetail</a></em></li>
+            </ul>
+        </div>
+
+        <p style="margin-top: 15px;">Languages</h2>
+        <p style="margin-top: 6px;">
+            <strong>Portuguese:</strong> Native &nbsp;|&nbsp; 
+            <strong>English:</strong> B1 Intermediate &nbsp;|&nbsp; 
+            <strong>French:</strong> Basic
+        </p>
+    </div>
+
+    <!-- Script para animação suave ao abrir o ficheiro -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Adiciona a classe que dispara a animação CSS de Fade In
+            setTimeout(function() {
+                document.getElementById("cv").classList.add("loaded");
+            }, 100);
+        });
+    </script>
+</body>
+</html>
