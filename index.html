@@ -202,6 +202,15 @@
             justify-content: space-between;
         }
 
+        .stack {
+            font-size: 12px;
+            color: var(--text-light);
+            margin: 2px 0 2px 0;
+            text-align: left;
+        }
+
+        .stack strong { color: var(--text-dark); }
+
         .cert-title {
             font-weight: 600;
             color: var(--text-dark);
@@ -303,12 +312,15 @@
 
         <div class="job-block">
             <div class="job-header">
-                <span>Lojadatia (E-commerce Platform) <span class="company">| Personal Project</span></span>
+                <span>E-commerce Platform on AWS with Terraform <span class="company">| Personal Project for a Small Business</span></span>
                 <span class="date">2025 – Present</span>
             </div>
+            <p class="stack"><strong>Stack:</strong> AWS (S3 · CloudFront · ACM · Route 53 · API Gateway · Lambda · DynamoDB) · Terraform · Python · Stripe API · HTML/CSS/JavaScript</p>
             <ul>
-                <li>Architected and deployed a cloud-based e-commerce platform hosted on <strong>AWS</strong>, utilizing modern web deployment best practices.</li>
-<li>Configured scalable resource provisioning and managed relational <strong>SQL</strong> database schemas optimized for inventory management and user transactions.</li>
+                <li>Provisioned the full infrastructure on <strong>AWS</strong> with modular <strong>Terraform</strong>, including custom domains for the website and the API.</li>
+                <li>Served the frontend from a private <strong>S3</strong> bucket through <strong>CloudFront</strong> (Origin Access Identity), with <strong>ACM</strong> TLS certificates validated via <strong>Route 53</strong> DNS.</li>
+                <li>Built the order API in <strong>Python</strong> on <strong>AWS Lambda</strong> behind <strong>API Gateway</strong>: creates <strong>Stripe</strong> Checkout sessions (test mode) and records orders in <strong>DynamoDB</strong>, with an IAM role scoped to the orders table.</li>
+                <li>Automated deployments: Terraform detects frontend changes, syncs the files to S3 and invalidates the CloudFront cache.</li>
             </ul>
         </div>
 
@@ -351,4 +363,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
